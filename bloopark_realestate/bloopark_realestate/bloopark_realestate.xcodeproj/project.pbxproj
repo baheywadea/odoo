@@ -1,0 +1,130 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXFileReference section */
+		FA471A642BCCBDB800E0A606 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		FA471A5D2BCCBDB800E0A606 = {
+			isa = PBXGroup;
+			children = (
+				FA471A632BCCBDB800E0A606 /* bloopark_realestate */,
+			);
+			sourceTree = "<group>";
+		};
+		FA471A632BCCBDB800E0A606 /* bloopark_realestate */ = {
+			isa = PBXGroup;
+			children = (
+				FA471A642BCCBDB800E0A606 /* Info.plist */,
+			);
+			path = bloopark_realestate;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FA471A622BCCBDB800E0A606 /* bloopark_realestate */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA471A652BCCBDB800E0A606 /* Build configuration list for PBXNativeTarget "bloopark_realestate" */;
+			buildPhases = (
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = bloopark_realestate;
+			productName = bloopark_realestate;
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FA471A5E2BCCBDB800E0A606 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					FA471A622BCCBDB800E0A606 = {
+						CreatedOnToolsVersion = 15.3;
+					};
+				};
+			};
+			buildConfigurationList = FA471A612BCCBDB800E0A606 /* Build configuration list for PBXProject "bloopark_realestate" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FA471A5D2BCCBDB800E0A606;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FA471A622BCCBDB800E0A606 /* bloopark_realestate */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		FA471A5F2BCCBDB800E0A606 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		FA471A602BCCBDB800E0A606 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+			};
+			name = Release;
+		};
+		FA471A662BCCBDB800E0A606 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6WWA8Y54W3;
+			};
+			name = Debug;
+		};
+		FA471A672BCCBDB800E0A606 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6WWA8Y54W3;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FA471A612BCCBDB800E0A606 /* Build configuration list for PBXProject "bloopark_realestate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA471A5F2BCCBDB800E0A606 /* Debug */,
+				FA471A602BCCBDB800E0A606 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA471A652BCCBDB800E0A606 /* Build configuration list for PBXNativeTarget "bloopark_realestate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA471A662BCCBDB800E0A606 /* Debug */,
+				FA471A672BCCBDB800E0A606 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FA471A5E2BCCBDB800E0A606 /* Project object */;
+}
