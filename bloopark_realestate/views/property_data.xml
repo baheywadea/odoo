@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <!-- Sequences from Property numbers -->
+    <record id="sequence_property" model="ir.sequence">
+        <field name="name">Realestate Property Numbers</field>
+        <field name="code">realestate.property</field>
+        <field name="prefix"></field>
+        <field name="padding">5</field>
+        <field name="number_next">1</field>
+        <field name="number_increment">1</field>
+        <field name="company_id" eval="False"/>
+    </record>
+    <!-- Sequences from Property Complaint numbers -->
+    <record id="sequence_property_complaints" model="ir.sequence">
+        <field name="name">Realestate Property Complaint Numbers</field>
+        <field name="code">realestate.property.complaints</field>
+        <field name="prefix"></field>
+        <field name="padding">5</field>
+        <field name="number_next">1</field>
+        <field name="number_increment">1</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <!-- Sequences from Property Tenancy numbers -->
+    <record id="sequence_property_tenancy" model="ir.sequence">
+        <field name="name">Realestate Property Tenancy Numbers</field>
+        <field name="code">realestate.property.tenancy</field>
+        <field name="prefix"></field>
+        <field name="padding">5</field>
+        <field name="number_next">1</field>
+        <field name="number_increment">1</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <!-- Types Of Property -->
+    <record id="property_type_flat" model="property.type">
+        <field name="name">Flat</field>
+    </record>
+    <record id="property_type_flat" model="property.type">
+        <field name="name">Office</field>
+    </record>
+    <record id="property_type_flat" model="property.type">
+        <field name="name">Floor</field>
+    </record>
+
+    <!-- Types Of Complaint -->
+    <record id="complaint_type_question" model="complaint.type">
+        <field name="name">Question</field>
+    </record>
+    <record id="complaint_type_electrical_issue" model="complaint.type">
+        <field name="name">Electrical Issue</field>
+    </record>
+    <record id="complaint_type_heating_issu" model="complaint.type">
+        <field name="name">Heating Issue</field>
+    </record>
+
+    <!-- Types Of Room -->
+    <record id="room_type_master" model="room.type">
+        <field name="name">Master Room</field>
+    </record>
+    <record id="room_type_living_room" model="room.type">
+        <field name="name">Living Room</field>
+    </record>
+    <record id="room_type_child_room" model="room.type">
+        <field name="name">Child Room</field>
+    </record>
+
+    <!-- Types Of Rent -->
+    <record id="room_type_monthly" model="rent.type">
+        <field name="name">Monthly</field>
+        <field name="duration">1</field>
+        <field name="renttype">Month</field>
+    </record>
+    <record id="room_type_quartly" model="rent.type">
+        <field name="name">Quartly</field>
+        <field name="duration">3</field>
+        <field name="renttype">Month</field>
+    </record>
+    <record id="room_type_annualy" model="rent.type">
+        <field name="name">Annualy</field>
+        <field name="duration">12</field>
+        <field name="renttype">Month</field>
+    </record>
+
+</odoo>

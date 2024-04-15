@@ -17,26 +17,26 @@
     </record>
 
     <menuitem
-        id="main_menu_properties"
-        name="Properties"
-        sequence="10"
-        action="bloopark_realestate.property_action"
-        web_icon="bloopark_realestate,static/description/icon.png"
-        groups="base.group_user"/>
+            id="main_menu_properties"
+            name="Properties"
+            sequence="10"
+            action="bloopark_realestate.property_action"
+            web_icon="bloopark_realestate,static/description/icon.png"
+            groups="base.group_user"/>
 
     <!-- Property menu -->
     <menuitem
-        id="menu_properties"
-        parent="bloopark_realestate.main_menu_properties"
-        name="Properties"
-        sequence="11"/>
+            id="menu_properties"
+            parent="bloopark_realestate.main_menu_properties"
+            name="Properties"
+            sequence="11"/>
 
     <menuitem
-        id="menu_property"
-        parent="menu_properties"
-        action="property_action"
-        groups="group_property_manager"
-        name="Property"/>
+            id="menu_property"
+            parent="menu_properties"
+            action="property_action"
+            groups="group_property_manager"
+            name="Property"/>
 
     <record id="property_tenancy_action" model="ir.actions.act_window">
         <field name="name">Tenancy</field>
@@ -53,17 +53,18 @@
     </record>
 
     <menuitem
-        id="menu_property_tenancy"
-        parent="bloopark_realestate.menu_properties"
-        name="Property Tenancy"
-        action = "property_tenancy_action"
-        groups="group_property_manager"/>
+            id="menu_property_tenancy"
+            parent="bloopark_realestate.menu_properties"
+            name="Property Tenancy"
+            action="property_tenancy_action"
+            groups="group_property_manager"/>
 
 
     <record id="property_complaints_action" model="ir.actions.act_window">
         <field name="name">Complaints</field>
         <field name="res_model">property.complaint</field>
         <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="property_complaint_view_tree"></field>
         <field name="domain">[]</field>
         <field name="context">{}</field>
         <field name="help" type="html">
@@ -75,39 +76,39 @@
     </record>
 
     <menuitem
-        id="menu_property_complaint"
-        parent="bloopark_realestate.menu_properties"
-        name="Complaints"
-        action="property_complaints_action"
-        groups="group_property_manager"/>
-
+            id="menu_property_complaint"
+            parent="bloopark_realestate.menu_properties"
+            name="Complaints"
+            action="property_complaints_action"
+            groups="group_property_manager"/>
 
 
     <menuitem
-        id="menu_property_report"
-        parent="bloopark_realestate.main_menu_properties"
-        name="Reporting"
-        sequence="15"/>
+            id="menu_property_report"
+            parent="bloopark_realestate.main_menu_properties"
+            name="Reporting"
+            sequence="15"/>
 
     <menuitem
-        id="menu_property_report_all"
-        parent="bloopark_realestate.menu_property_report"
+            id="menu_property_report_all"
+            parent="bloopark_realestate.menu_property_report"
 
     />
 
     <!-- Properties's config menu-->
     <menuitem
-        id="property_menu_config"
-        parent="bloopark_realestate.main_menu_properties"
-        name="Configuration"
-        sequence="20"
-        groups="group_property_user"/>
+            id="property_menu_config"
+            parent="bloopark_realestate.main_menu_properties"
+            name="Configuration"
+            sequence="20"
+            groups="group_property_user"/>
 
 
     <record id="property_rent_type_action" model="ir.actions.act_window">
         <field name="name">Rent Types</field>
         <field name="res_model">rent.type</field>
         <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="rent_type_view_tree"></field>
         <field name="domain">[]</field>
         <field name="context">{}</field>
         <field name="help" type="html">
@@ -120,11 +121,11 @@
 
 
     <menuitem
-        id="menu_rent_type"
-        parent="bloopark_realestate.property_menu_config"
-        name="Rent Type"
-        action="property_rent_type_action"
-        groups="group_property_manager"/>
+            id="menu_rent_type"
+            parent="bloopark_realestate.property_menu_config"
+            name="Rent Type"
+            action="property_rent_type_action"
+            groups="group_property_manager"/>
 
     <record id="property_type_action" model="ir.actions.act_window">
         <field name="name">Property Types</field>
@@ -141,11 +142,11 @@
     </record>
 
     <menuitem
-        id="menu_property_type"
-        parent="bloopark_realestate.property_menu_config"
-        name="Property Type"
-        action="property_type_action"
-        groups="group_property_manager"/>
+            id="menu_property_type"
+            parent="bloopark_realestate.property_menu_config"
+            name="Property Type"
+            action="property_type_action"
+            groups="group_property_manager"/>
 
     <record id="complaint_type_action" model="ir.actions.act_window">
         <field name="name">Complaint Types</field>
@@ -162,11 +163,11 @@
     </record>
 
     <menuitem
-        id="menu_complaint_type"
-        parent="bloopark_realestate.property_menu_config"
-        name="Complaint Type"
-        action="complaint_type_action"
-        groups="group_property_manager"/>
+            id="menu_complaint_type"
+            parent="bloopark_realestate.property_menu_config"
+            name="Complaint Type"
+            action="complaint_type_action"
+            groups="group_property_manager"/>
 
     <record id="room_type_action" model="ir.actions.act_window">
         <field name="name">Room Types</field>
@@ -183,11 +184,11 @@
     </record>
 
     <menuitem
-        id="menu_room_type"
-        parent="bloopark_realestate.property_menu_config"
-        name="Room Type"
-        action="room_type_action"
-        groups="group_property_manager"/>
+            id="menu_room_type"
+            parent="bloopark_realestate.property_menu_config"
+            name="Room Type"
+            action="room_type_action"
+            groups="group_property_manager"/>
 
     <record id="room_assets_action" model="ir.actions.act_window">
         <field name="name">Room Assets</field>
@@ -204,11 +205,11 @@
     </record>
 
     <menuitem
-        id="menu_room_assets"
-        parent="bloopark_realestate.property_menu_config"
-        name="Room Assets"
-        action="room_assets_action"
-        groups="group_property_manager"/>
+            id="menu_room_assets"
+            parent="bloopark_realestate.property_menu_config"
+            name="Room Assets"
+            action="room_assets_action"
+            groups="group_property_manager"/>
 
     <record id="property_room_action" model="ir.actions.act_window">
         <field name="name">Rooms</field>
@@ -225,16 +226,17 @@
     </record>
 
     <menuitem
-        id="menu_property_room"
-        parent="bloopark_realestate.property_menu_config"
-        name="Property Room"
-        action="property_room_action"
-        groups="group_property_manager"/>
+            id="menu_property_room"
+            parent="bloopark_realestate.property_menu_config"
+            name="Property Room"
+            action="property_room_action"
+            groups="group_property_manager"/>
 
     <record id="property_photo_action" model="ir.actions.act_window">
         <field name="name">Property Photos</field>
         <field name="res_model">property.photo</field>
         <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="property_photo_view_tree"></field>
         <field name="domain">[]</field>
         <field name="context">{}</field>
         <field name="help" type="html">
@@ -246,15 +248,11 @@
     </record>
 
     <menuitem
-        id="menu_property_photo"
-        parent="bloopark_realestate.property_menu_config"
-        name="Property Photo"
+            id="menu_property_photo"
+            parent="bloopark_realestate.property_menu_config"
+            name="Property Photo"
 
-        groups="group_property_manager"/>
-
-
-
-
+            groups="group_property_manager"/>
 
 
 </odoo>

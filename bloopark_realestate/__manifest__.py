@@ -25,8 +25,11 @@
         'security/res_groups_data.xml',
 
         'security/ir.model.access.csv',
-        'views/property_menus.xml',
+
         'views/property_views.xml',
+        'views/property_data.xml',
+        'views/property_menus.xml',
+        'views/property_complaint_website_template.xml',
     ],
     'assets': {
         # 'point_of_sale._assets_pos': [

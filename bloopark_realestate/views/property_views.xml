@@ -15,7 +15,8 @@
 
                 <separator/>
                 <filter string="Facing" name="filter_north_facing" domain="[('facing', '=', 'north')]"/>
-                <filter string="Full Furnished" name="filter_category_punctual" domain="[('furnished', '=', 'full_furnished')]"/>
+                <filter string="Full Furnished" name="filter_category_punctual"
+                        domain="[('furnished', '=', 'full_furnished')]"/>
 
                 <separator/>
                 <filter name="filter_active" string="Archived" domain="[('active', '=', False)]"/>
@@ -36,7 +37,7 @@
                 <field name="name" readonly="1"/>
                 <field name="state_id"/>
                 <field name="country_id"/>
-                <field name="type_id" />
+                <field name="type_id"/>
                 <field name="property_manager"/>
                 <field name="bathroom" optional="hide"/>
                 <field name="bedroom" optional="show"/>
@@ -54,89 +55,92 @@
                 <field name="active" invisible="1"/>
 
                 <header>
-<!--                    <button name="action_customer_preview" string="Preview" type="object" class="btn btn-primary"-->
-<!--                        invisible="not active"/>-->
-<!--                    <button name="action_share_invite" string="Share" type="object" class="btn btn-secondary"-->
-<!--                        invisible="not active"/>-->
+                    <!--                    <button name="action_customer_preview" string="Preview" type="object" class="btn btn-primary"-->
+                    <!--                        invisible="not active"/>-->
+                    <!--                    <button name="action_share_invite" string="Share" type="object" class="btn btn-secondary"-->
+                    <!--                        invisible="not active"/>-->
                 </header>
                 <sheet>
                     <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger"
-                        invisible="active"/>
-<!--                    <div class="oe_button_box" name="button_box" groups="base.group_user">-->
-<!--                        <button class="oe_stat_button" type="object"-->
-<!--                            name="action_appointment_shared_links"-->
-<!--                            icon="fa-link"-->
-<!--                            invisible="appointment_invite_count == 0">-->
-<!--                            <field string="Shared Links" name="appointment_invite_count" widget="statinfo"/>-->
-<!--                        </button>-->
-<!--                        <button class="oe_stat_button" type="object"-->
-<!--                            name="action_appointment_resources"-->
-<!--                            icon="fa-cubes"-->
-<!--                            invisible="schedule_based_on == 'users'">-->
-<!--                            <field string="Resources" name="resource_count" widget="statinfo"/>-->
-<!--                        </button>-->
-<!--                        <button class="oe_stat_button" type="object"-->
-<!--                            name="action_calendar_meetings"-->
-<!--                            icon="fa-calendar">-->
-<!--                            <field string="Appointments" name="appointment_count" widget="statinfo"/>-->
-<!--                        </button>-->
-<!--                    </div>-->
+                            invisible="active"/>
+                    <!--                    <div class="oe_button_box" name="button_box" groups="base.group_user">-->
+                    <!--                        <button class="oe_stat_button" type="object"-->
+                    <!--                            name="action_appointment_shared_links"-->
+                    <!--                            icon="fa-link"-->
+                    <!--                            invisible="appointment_invite_count == 0">-->
+                    <!--                            <field string="Shared Links" name="appointment_invite_count" widget="statinfo"/>-->
+                    <!--                        </button>-->
+                    <!--                        <button class="oe_stat_button" type="object"-->
+                    <!--                            name="action_appointment_resources"-->
+                    <!--                            icon="fa-cubes"-->
+                    <!--                            invisible="schedule_based_on == 'users'">-->
+                    <!--                            <field string="Resources" name="resource_count" widget="statinfo"/>-->
+                    <!--                        </button>-->
+                    <!--                        <button class="oe_stat_button" type="object"-->
+                    <!--                            name="action_calendar_meetings"-->
+                    <!--                            icon="fa-calendar">-->
+                    <!--                            <field string="Appointments" name="appointment_count" widget="statinfo"/>-->
+                    <!--                        </button>-->
+                    <!--                    </div>-->
 
                     <div class="row justify-content-between position-relative w-100 m-0 mb-2">
-                            <div class="oe_title mw-75 ps-0 pe-2">
-                                <h1 class="d-flex flex-row align-items-center">
+                        <div class="oe_title mw-75 ps-0 pe-2">
+                            <h1 class="d-flex flex-row align-items-center">
 
-                                    <field name="name" placeholder="Property's Name"
-                                        required="True" style="font-size: min(4vw, 2.6rem);"/>
-                                </h1>
+                                <field name="name" placeholder="Property's Name"
+                                       readonly="True" style="font-size: min(4vw, 2.6rem);"/>
+                            </h1>
 
 
-                            </div>
-                            <div class="o_employee_avatar m-0 p-0">
-                                <field name="image" widget='image' class="oe_avatar m-0" options='{"zoom": true, "preview_image":"avatar_128"}'/>
-                            </div>
                         </div>
+                        <div class="o_employee_avatar m-0 p-0">
+                            <field name="image" widget='image' class="oe_avatar m-0"
+                                   options='{"zoom": true, "preview_image":"avatar_128"}'/>
+                        </div>
+                    </div>
 
                     <group>
-                            <group>
-                                <field name="city" />
-                                <field name="street" />
-                                <field name="street2" />
-                                <field name="state_id"/>
-                                <field name="country_id"/>
-                                <field name="zip" />
-                            </group>
-                            <group>
-                                 <field name="facing"/>
-                                 <field name="furnished"/>
-                                <field name="type_id"/>
-                                <field name="property_manager" widget="many2one_avatar_user"/>
-                                <field name="ground_rent" />
-                                <field name="gfa_meter"/>
-                                <field name="rent_type_id"/>
-                                <field name="bedroom"/>
-                                <field name="bathroom"/>
-
-                            </group>
+                        <group>
+                            <field name="city"/>
+                            <field name="street"/>
+                            <field name="street2"/>
+                            <field name="state_id"/>
+                            <field name="country_id"/>
+                            <field name="zip"/>
                         </group>
-                    <notebook>
-                        <page string="Complaints" name="complaints">
+                        <group>
+                            <field name="facing"/>
+                            <field name="furnished"/>
+                            <field name="type_id"/>
+                            <field name="property_manager" widget="many2one_avatar_user"/>
+                            <field name="ground_rent"/>
+                            <field name="gfa_meter"/>
+                            <field name="rent_type_id"/>
+                            <field name="bedroom"/>
+                            <field name="bathroom"/>
 
-                            <field name="complaint_ids">
-                                <tree editable="bottom">
-                                    <field name="name"/>
-                                    <field name="customer_description"/>
-                                    <field name="date"/>
-                                    <field name="type"/>
-                                    <field name="assign_to"/>
-                                    <field name="action_plan"/>
-                                    <field name="state"/>
-                                </tree>
-                            </field>
-                        </page>
+                        </group>
+                    </group>
+                    <notebook>
+<!--                        <page string="Complaints" name="complaints">-->
+
+<!--                            <field name="complaint_ids">-->
+<!--                                <tree editable="bottom">-->
+<!--                                    <field name="name"/>-->
+<!--                                    <field name="customer_description"/>-->
+<!--                                    <field name="date"/>-->
+<!--                                    <field name="type"/>-->
+<!--                                    <field name="assign_to"/>-->
+<!--                                    <field name="action_plan"/>-->
+<!--                                    <field name="state"/>-->
+<!--                                </tree>-->
+<!--                            </field>-->
+<!--                        </page>-->
                         <page string="Photos" name="property_photo_ids">
                             <group name="property_photo_ids" string="Property Photos">
-                                <field name="property_photo_ids" class="o_website_sale_image_list" context="{'default_name': name}" mode="kanban" add-label="Add a Photo" nolabel="1"/>
+                                <field name="property_photo_ids" class="o_website_sale_image_list"
+                                       context="{'default_name': name}" mode="kanban" add-label="Add a Photo"
+                                       nolabel="1"/>
                             </group>
                         </page>
 
@@ -157,6 +161,266 @@
             </form>
         </field>
     </record>
+
+
+    <record id="rent_type_view_tree" model="ir.ui.view">
+        <field name="name">rent.type.tree</field>
+        <field name="model">rent.type</field>
+        <field name="arch" type="xml">
+            <tree string="Rent types" multi_edit="1">
+                <field name="name"/>
+                <field name="duration"/>
+                <field name="renttype"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="rent_type_view_form" model="ir.ui.view">
+        <field name="name">rent.type.form</field>
+        <field name="model">rent.type</field>
+        <field name="arch" type="xml">
+            <form string="Rent Type">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="duration"/>
+                        <field name="renttype"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="room_assets_view_tree" model="ir.ui.view">
+        <field name="name">room.assets.tree</field>
+        <field name="model">room.assets</field>
+        <field name="arch" type="xml">
+            <tree string="Room Asset" multi_edit="1">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="type"/>
+                <field name="qty"/>
+                <field name="room_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="room_assets_view_form" model="ir.ui.view">
+        <field name="name">room.assets.form</field>
+        <field name="model">room.assets</field>
+        <field name="arch" type="xml">
+            <form string="Room Asset">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="date"/>
+                        <field name="type"/>
+                        <field name="qty"/>
+                        <field name="room_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="property_room_view_tree" model="ir.ui.view">
+        <field name="name">property.room.tree</field>
+        <field name="model">property.room</field>
+        <field name="arch" type="xml">
+            <tree string="Property Room" multi_edit="1">
+                <field name="name"/>
+                <field name="width"/>
+                <field name="height"/>
+                <field name="length"/>
+                <field name="attach"/>
+                <field name="type_id"/>
+                <field name="property_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="property_room_view_form" model="ir.ui.view">
+        <field name="name">property.room.form</field>
+        <field name="model">property.room</field>
+        <field name="arch" type="xml">
+            <form string="Property Room">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="width"/>
+                        <field name="height"/>
+                        <field name="length"/>
+                        <field name="attach"/>
+                        <field name="type_id"/>
+                        <field name="property_id"/>
+                    </group>
+                    <group>
+                        <field name="assets_ids"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="property_photo_view_tree" model="ir.ui.view">
+        <field name="name">property.photo.tree</field>
+        <field name="model">property.photo</field>
+        <field name="arch" type="xml">
+            <tree string="Property photo" multi_edit="1">
+                <field name="photos" widget='image' class="oe_avatar m-0"/>
+                <field name="photo_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="property_photo_view_form" model="ir.ui.view">
+        <field name="name">property.photo.form</field>
+        <field name="model">property.photo</field>
+        <field name="arch" type="xml">
+            <form string="Property Photo">
+                <sheet>
+
+                    <div class="row justify-content-between position-relative w-100 m-0 mb-2">
+                        <div class="oe_title mw-75 ps-0 pe-2">
+                            <h1 class="d-flex flex-row align-items-center">
+
+                                <field name="photo_id" placeholder="Property's Photo"
+                                       readonly="True" style="font-size: min(4vw, 2.6rem);"/>
+                            </h1>
+
+
+                        </div>
+                        <div class="o_employee_avatar m-0 p-0">
+                            <field name="photos" widget='image' class="oe_avatar m-0"
+                                   options='{"zoom": true, "preview_image":"avatar_128"}'/>
+                        </div>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="property_complaint_search" model="ir.ui.view">
+        <field name="name">property.complaint.search</field>
+        <field name="model">property.complaint</field>
+        <field name="arch" type="xml">
+            <search string="Property Complaint">
+                <field name="name"/>
+                <field name="customer_description"/>
+                <field name="date"/>
+                <field name="type"/>
+                <field name="partner_id"/>
+                <field name="customer_email" string="Email"/>
+                <field name="customer_street" string="Street"/>
+                <field name="customer_street2" string="street2"/>
+                <field name="customer_city" string="City"/>
+                <field name="customer_house_no" string="House No."/>
+                <field name="customer_Flat_no" string="Flat No."/>
+
+                <field name="action_plan"/>
+                <field name="assign_to"/>
+                <field name="state"/>
+
+                <separator/>
+                <filter string="New Complaints" name="filter_new_complaints" domain="[('state', '=', 'New')]"/>
+                <filter string="In Review Complaints" name="filter_in_review" domain="[('state', '=', 'In Review')]"/>
+                <filter string="In Progress Complaints" name="filter_in_progress" domain="[('state', '=', 'In Progress')]"/>
+                <filter string="Solved Complaints" name="filter_in_solved" domain="[('state', '=', 'Solved')]"/>
+                <filter string="Dropped Complaints" name="filter_in_dropped" domain="[('state', '=', 'Dropped')]"/>
+
+                <separator/>
+
+                <group expand="0" string="Group By">
+                    <filter string="State" name="group_by_state" context="{'group_by': 'state'}"/>
+                    <filter string="Type" name="group_by_type" context="{'group_by': 'type'}"/>
+                    <filter string="Assign To" name="group_by_type" context="{'group_by': 'assign_to'}"/>
+                    <filter string="Contact" name="group_by_contact" context="{'group_by': 'partner_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="property_complaint_view_tree" model="ir.ui.view">
+        <field name="name">property.complaint.tree</field>
+        <field name="model">property.complaint</field>
+        <field name="arch" type="xml">
+            <tree string="Property complaints">
+                <field name="name"/>
+                <field name="customer_description"/>
+                <field name="date"/>
+                <field name="type"/>
+                <field name="partner_id"/>
+                <field name="customer_email" string="Email"/>
+                <field name="customer_street" string="Street"/>
+                <field name="customer_street2" string="street2"/>
+                <field name="customer_city" string="City"/>
+                <field name="customer_house_no" string="House No."/>
+                <field name="customer_Flat_no" string="Flat No."/>
+
+                <field name="action_plan"/>
+                <field name="assign_to"/>
+                <field name="state" widget="badge" decoration-danger="state=='Dropped'" decoration-info="state== 'In Progress'" decoration-muted="state == 'NEW'" decoration-success="state == 'Solved'" decoration-warning="state=='In Review'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="property_complaint_view_form" model="ir.ui.view">
+        <field name="name">property.complaint.form</field>
+        <field name="model">property.complaint</field>
+        <field name="arch" type="xml">
+            <form string="Property Complaint">
+                <header>
+                    <button name="confirm_complaint" string="Confirm" type="object"  invisible="state != 'New'" data-hotkey="v"/>
+                    <button name="drop_it" string="Drop" type="object"  invisible="state != 'New'" data-hotkey="c"/>
+                    <button name="confirm2_complaint" string="Mark As In Progress" type="object"  invisible="state != 'In Review'" data-hotkey="v"/>
+                    <button name="mark_as_done" string="Mark As Solved" type="object"  invisible="state != 'In Progress'" data-hotkey="v"/>
+
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="row justify-content-between position-relative w-100 m-0 mb-2">
+                        <div class="oe_title mw-75 ps-0 pe-2">
+                            <h1 class="d-flex flex-row align-items-center">
+
+                                <field name="name" placeholder="Complaint NO."
+                                       readonly="True" style="font-size: min(4vw, 2.6rem);"/>
+                            </h1>
+
+
+                        </div>
+
+                    </div>
+                    <group>
+                        <group name="customer_details">
+                            <field name="partner_id"/>
+                            <field name="customer_email" string="Email"/>
+                            <field name="customer_street" string="Street"/>
+                            <field name="customer_street2" string="street2"/>
+                            <field name="customer_city" string="City"/>
+                            <field name="customer_house_no" string="House No."/>
+                            <field name="customer_Flat_no" string="Flat No."/>
+                        </group>
+                        <group name="complaint_details">
+                            <field name="customer_description"/>
+                            <field name="date"/>
+                            <field name="type"/>
+                            <field name="action_plan" required="state!='New'"/>
+                            <field name="assign_to" required="state!='New'"/>
+
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="message_ids"/>
+                    </div>
+            </form>
+        </field>
+    </record>
+
 
 
 </odoo>

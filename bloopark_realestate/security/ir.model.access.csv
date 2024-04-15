@@ -40,3 +40,7 @@ access_property_complaint_manager,property_complaint.type.manager,model_property
 access_property_tenancy_all,property_tenancy.all,model_property_tenancy,,1,0,0,0
 access_property_tenancy_user,property_tenancy.type.user,model_property_tenancy,group_property_user,1,0,0,0
 access_property_tenancy_manager,property_tenancy.type.manager,model_property_tenancy,group_property_manager,1,1,1,1
+
+access_tenancy_rent_schedule_all,tenancy_rent_schedule.all,model_tenancy_rent_schedule,,1,0,0,0
+access_tenancy_rent_schedule_user,tenancy_rent_schedule.type.user,model_tenancy_rent_schedule,group_property_user,1,0,0,0
+access_tenancy_rent_schedule_manager,tenancy_rent_schedule.type.manager,model_tenancy_rent_schedule,group_property_manager,1,1,1,1
