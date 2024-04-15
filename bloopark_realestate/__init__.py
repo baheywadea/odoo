@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Part of BAHEY WADEA. See LICENSE file for full copyright and licensing details.
+# Part of BAHEY WADEA 202. See LICENSE file for full copyright and licensing details.
 
 
 from . import models
