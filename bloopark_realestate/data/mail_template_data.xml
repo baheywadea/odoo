@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="email_template_property_complaint" model="mail.template">
+            <field name="name">Property Complaint</field>
+            <field name="model_id" ref="bloopark_realestate.model_property_complaint"/>
+            <field name="subject">Complaint No. (Ref {{ object.name or 'n/a' }})</field>
+            <field name="email_from">{{ (user.email_formatted) }}</field>
+            <field name="partner_to">{{ object.partner_id.id }}</field>
+            <field name="description">Used by salespeople when they send quotations or proforma to prospects</field>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px;">
+    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+        Hello, <t t-out="object.partner_id.name or ''"></t>
+        <br/><br/>
+        Your Complaint No . <span style="font-weight: bold;"  t-out="object.name or ''">S00052</span> has been received succesfully.
+<!--            <t t-if="object.customer_street">-->
+        <br/>
+                (located in: <t t-out="object.customer_street or ''"></t> , <t t-out="object.customer_street2 or ''"></t>
+                <br/> City : <t t-out="object.customer_city or ''"></t>
+                <br/> House No.:<t t-out="object.customer_house_no or ''"></t>
+                <br/>
+                Flat No.:<t t-out="object.customer_Flat_no or ''"></t>
+                )
+<!--            </t>-->
+                <br/>
+            Complaint Type : <t t-out="object.type.name or ''"></t>.
+        <br/>
+        Descruption : <t t-out="object.customer_description or ''"></t>.
+
+
+        <br/><br/>
+        Do not hesitate to contact us if you have any questions.
+        <t t-if="not is_html_empty(user_id.signature)">
+            <br/><br/>
+            <t t-out="user_id.signature or ''">--<br/>Mitchell Admin</t>
+        </t>
+        <br/><br/>
+    </p>
+</div>
+            </field>
+            <field name="report_template_ids" eval="[(4, ref('bloopark_realestate.action_print_property_complaint_report'))]"/>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <record id="mail_template_property_complaint_answered" model="mail.template">
+            <field name="name">Property Complaint : Answered</field>
+            <field name="model_id" ref="bloopark_realestate.model_property_complaint"/>
+            <field name="subject">Complaint No. (Ref {{ object.name or 'n/a' }})</field>
+            <field name="email_from">{{ (user.email_formatted) }}</field>
+            <field name="partner_to">{{ object.partner_id.id }}</field>
+            <field name="description">Sent to customers when a complaint question is answered</field>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px;">
+    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+
+        Hello, <t t-out="object.partner_id.name or ''"></t>
+        <br/><br/>
+        About your complaint question
+        <span style="font-weight:bold;" t-out="object.customer_description or ''">Question</span>
+        here's the answer
+        <span style="font-weight:bold;" t-out="object.question_answer or ''">Answer</span>
+        for your order
+        <span style="font-weight:bold;" t-out="object.name or ''">S00049</span>
+
+        <br/><br/>
+        Thank you for your trust!
+        <br/>
+        Do not hesitate to contact us if you have any questions.
+        <t t-if="not is_html_empty(user_id.signature)">
+            <br/><br/>
+            <t t-out="user_id.signature or ''">--<br/>Mitchell Admin</t>
+        </t>
+        <br/><br/>
+    </p>
+</div>
+            </field>
+            <field name="report_template_ids" eval="[(4, ref('bloopark_realestate.action_print_property_complaint_report'))]"/>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <record id="mail_template_property_complaint_solved" model="mail.template">
+            <field name="name">Property Complaint : Solved</field>
+            <field name="model_id" ref="bloopark_realestate.model_property_complaint"/>
+            <field name="subject">Complaint No. (Ref {{ object.name or 'n/a' }})</field>
+            <field name="email_from">{{ (user.email_formatted) }}</field>
+            <field name="partner_to">{{ object.partner_id.id }}</field>
+            <field name="description">Sent to customers when a complaint is solved</field>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px;">
+    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+
+        Hello, <t t-out="object.partner_id.name or ''"></t>
+        <br/><br/>
+        Your complaint No. <span style="font-weight:bold;" t-out="object.name or ''">S00049</span> has been solved.
+        <br/> and here is the details of your complaint
+        Your description :<span style="font-weight:bold;" t-out="object.customer_description or ''">Customer Description</span>
+        <br/>our action plan : <span style="font-weight:bold;" t-out="object.action_plan or ''">Answer</span>
+
+
+        <br/><br/>
+        Thank you for your trust!
+        <br/>
+        Do not hesitate to contact us if you have any questions.
+        <t t-if="not is_html_empty(user_id.signature)">
+            <br/><br/>
+            <t t-out="user_id.signature or ''">--<br/>Mitchell Admin</t>
+        </t>
+        <br/><br/>
+    </p>
+</div>
+            </field>
+            <field name="report_template_ids" eval="[(4, ref('bloopark_realestate.action_print_property_complaint_report'))]"/>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+
+    </data>
+</odoo>

@@ -21,7 +21,7 @@
 
 import time
 from datetime import datetime
-from odoo import models, fields, api, _
+from odoo import models, fields, api, SUPERUSER_ID, _
 from dateutil.relativedelta import relativedelta
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 from odoo.exceptions import UserError
@@ -58,6 +58,7 @@ class property_complaint(models.Model):
     customer_house_no = fields.Text('Customer House No', required=True, tracking=True)
     customer_Flat_no = fields.Text('Customer Flat No', required=True, tracking=True)
     action_plan = fields.Text('Action Plan', tracking=True)
+    question_answer = fields.Text('Question Answer', tracking=True)
 
     state = fields.Selection(
         [('New', 'New'), ('In Review', 'In Review'), ('In Progress', 'In Progress'), ('Solved', 'Solved'),
@@ -83,5 +84,78 @@ class property_complaint(models.Model):
     def drop_it(self):
         for rec in self:
             rec.write({'state':'Dropped'})
+
+    def action_complaint_send(self):
+        """ Opens a wizard to compose an email, with relevant mail template loaded by default """
+        self.ensure_one()
+        lang = self.env.context.get('lang')
+        mail_template = self._find_mail_template()
+        if mail_template and mail_template.lang:
+            lang = mail_template._render_lang(self.ids)[self.id]
+        ctx = {
+            'default_model': 'property.complaint',
+            'default_res_ids': self.ids,
+            'default_template_id': mail_template.id if mail_template else None,
+            'default_composition_mode': 'comment',
+            'mark_so_as_sent': True,
+            'default_email_layout_xmlid': 'mail.mail_notification_layout_with_responsible_signature',
+            'force_email': True,
+            'model_description': self.with_context(lang=lang).type.name,
+        }
+        return {
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'res_model': 'mail.compose.message',
+            'views': [(False, 'form')],
+            'view_id': False,
+            'target': 'new',
+            'context': ctx,
+        }
+
+
+    def _find_mail_template(self):
+        """ Get the appropriate mail template for the current sales order based on its state.
+
+        If the SO is confirmed, we return the mail template for the sale confirmation.
+        Otherwise, we return the quotation email template.
+
+        :return: The correct mail template based on the current status
+        :rtype: record of `mail.template` or `None` if not found
+        """
+        self.ensure_one()
+        return self.env.ref('bloopark_realestate.email_template_property_complaint', raise_if_not_found=False)
+
+    def _send_order_confirmation_mail(self):
+        """ Send a mail to the SO customer to inform them that their order has been confirmed.
+
+        :return: None
+        """
+        for order in self:
+            mail_template = order._find_mail_template()
+            order._send_order_notification_mail(mail_template)
+
+    def _send_order_notification_mail(self, mail_template):
+        """ Send a mail to the customer
+
+        Note: self.ensure_one()
+
+        :param mail.template mail_template: the template used to generate the mail
+        :return: None
+        """
+        self.ensure_one()
+
+        if not mail_template:
+            return
+
+        if self.env.su:
+            # sending mail in sudo was meant for it being sent from superuser
+            self = self.with_user(SUPERUSER_ID)
+
+        self.with_context(force_send=True).message_post_with_source(
+            mail_template,
+            email_layout_xmlid='mail.mail_notification_layout_with_responsible_signature',
+            subtype_xmlid='mail.mt_comment',
+        )
+
 
     _sql_constraints = [('uniq_name', 'unique(name)', "The name of this Property must be unique!")]

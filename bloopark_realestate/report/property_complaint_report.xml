@@ -2,7 +2,7 @@
 <odoo>
     <template id="print_property_complaint_document_base">
         <t t-call="web.external_layout">
-            <t t-foreach="docs" t-as="d">
+            <t t-foreach="docs" t-as="doc">
                 <div class="page">
                     <div class="oe_structure"/>
 

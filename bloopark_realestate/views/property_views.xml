@@ -359,7 +359,7 @@
                 <field name="customer_city" string="City"/>
                 <field name="customer_house_no" string="House No."/>
                 <field name="customer_Flat_no" string="Flat No."/>
-
+                <field name="question_answer"/>
                 <field name="action_plan"/>
                 <field name="assign_to"/>
                 <field name="state" widget="badge" decoration-danger="state=='Dropped'" decoration-info="state== 'In Progress'" decoration-muted="state == 'NEW'" decoration-success="state == 'Solved'" decoration-warning="state=='In Review'"/>
@@ -373,6 +373,10 @@
         <field name="arch" type="xml">
             <form string="Property Complaint">
                 <header>
+                    <button name="action_complaint_send" id="send_by_email_primary" string="Send by Email" type="object" data-hotkey="g"
+                    invisible="state != 'New'" class="btn-primary"/>
+
+
                     <button name="confirm_complaint" string="Confirm" type="object"  invisible="state != 'New'" data-hotkey="v"/>
                     <button name="drop_it" string="Drop" type="object"  invisible="state != 'New'" data-hotkey="c"/>
                     <button name="confirm2_complaint" string="Mark As In Progress" type="object"  invisible="state != 'In Review'" data-hotkey="v"/>
@@ -407,6 +411,7 @@
                             <field name="customer_description"/>
                             <field name="date"/>
                             <field name="type"/>
+                            <field name="question_answer" required="type.name=='Question'"/>
                             <field name="action_plan" required="state!='New'"/>
                             <field name="assign_to" required="state!='New'"/>
 

@@ -47,4 +47,5 @@ class WebsitePropertyComplaint(http.Controller):
                           'type':complaint_type[0].id
                           }
         complaint_id = request.env['property.complaint'].sudo().create(complaint_vals)
+        complaint_id._send_order_confirmation_mail()
         return request.redirect("/complaint-thank-you?id="+str(complaint_id.id))
