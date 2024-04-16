@@ -35,6 +35,7 @@ class WebsitePropertyComplaint(http.Controller):
                         'street': kwargs.get('customer_street'),
                         'street2': kwargs.get('customer_street2'),
                         'city': kwargs.get('customer_city'),
+                        'tenant':True,
                         }
 
         partner_id = request.env['res.partner'].sudo().create(partner_vals)

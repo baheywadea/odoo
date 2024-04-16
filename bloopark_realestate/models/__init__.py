@@ -3,3 +3,4 @@
 
 from . import property
 from . import property_tenancy
+from . import property_complaint

@@ -17,15 +17,10 @@
     'website': 'https://www.linkedin.com/in/baheywadeahakim/',
     'depends': ['base','hr', 'website','account'],
     'data': [
-        # 'report/pos_receipt_card.xml',
-        # 'report/pos_receipt_report.xml',
-        # 'report/pos_arabic_receipt.xml',
-        # 'report/pos_arabic_receipt_report.xml',
-
+        'report/property_complaint_report.xml',
+        'report/property_complaint_report_action.xml',
         'security/res_groups_data.xml',
-
         'security/ir.model.access.csv',
-
         'views/property_views.xml',
         'views/property_data.xml',
         'views/property_menus.xml',

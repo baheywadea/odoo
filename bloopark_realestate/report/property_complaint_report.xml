@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="print_property_complaint_document_base">
+        <t t-call="web.external_layout">
+            <t t-foreach="docs" t-as="d">
+                <div class="page">
+                    <div class="oe_structure"/>
+
+                    <h2 class="mt-4">
+
+                        Complaint No.<span t-field="doc.name">00001</span>
+                    </h2>
+
+                    <div class="row mt-4 mb-2" id="informations">
+                        <div t-if="doc.name" class="col-auto col-3 mw-100 mb-2" name="informations_reference">
+                            <strong>Complaint NO.:</strong>
+                            <br/>
+                            <span class="m-0" t-field="doc.name">00001</span>
+                        </div>
+                        <div t-if="doc.date" class="col-auto col-3 mw-100 mb-2" name="informations_date">
+                            <strong>Complaint Date:</strong>
+                            <span class="m-0" t-field="doc.date" t-options="{&quot;widget&quot;: &quot;date&quot;}">2023-12-31</span>
+                        </div>
+                        <div t-if="doc.type" class="col-auto col-3 mw-100 mb-2">
+                            <strong>Type:</strong>
+                            <br/>
+                            <span class="m-0" t-field="doc.type">Elecectrical Issue</span>
+                        </div>
+                        <div t-if="doc.state" class="col-auto col-3 mw-100 mb-2" name="state">
+                            <strong>State:</strong><br/>
+                            <span class="m-0" t-field="doc.state">New</span>
+                        </div>
+                        <div t-if="doc.assign_to.name" class="col-auto col-3 mw-100 mb-2">
+                            <strong>Assign To:</strong>
+                            <br/>
+                            <span class="m-0" t-field="doc.assign_to">Mitchell Admin</span>
+                        </div>
+
+                    </div>
+
+                    <div class="row mt-3 mb-2" id="informations">
+                        <div t-if="doc.partner_id" class="col-auto col-3 mw-100 mb-2" name="informations_reference">
+                            <strong>Customer Details:</strong>
+                            <br/>
+                            Name : <span class="m-0" t-field="doc.partner_id">BAHEY WADEA</span>
+                             <br/>
+                            Email : <span class="m-0" t-field="doc.customer_email">BAHEY WADEA</span>
+                        </div>
+
+                        <div class="col-auto col-3 mw-100 mb-2">
+                            <strong>Customer Address:</strong>
+                            <br/>
+                            <span class="m-0" t-field="doc.customer_street">Street1</span>
+                            <br/>
+                            <span class="m-0" t-field="doc.customer_street2">Street2</span>
+                            <br/>
+                            <span class="m-0" t-field="doc.customer_city">City</span>
+
+                        </div>
+                        <div class="col-auto col-3 mw-100 mb-2" name="informations_date">
+                            <strong>Peroperty Details:</strong>
+                            <br/>
+                            House NO : <span class="m-0" t-field="doc.customer_house_no">123</span>
+                           <br/>
+                           <t t-if="doc.customer_Flat_no">
+
+                            Flat NO : <span class="m-0" t-field="doc.customer_Flat_no">123</span>
+                           </t>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="row mt-3 mb-2" id="informations">
+                        <div class="col-auto" name="informations_date">
+                            <strong>Action Plan:</strong>
+                            <br/>
+                            <span class="m-0" t-field="doc.action_plan">123</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="print_pos_receipt_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="lang" t-value="o.partner_id.lang"/>
+                <t t-call="bloopark_realestate.print_property_complaint_document_base" t-lang="lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>
