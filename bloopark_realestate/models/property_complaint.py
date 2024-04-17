@@ -110,6 +110,10 @@ class property_complaint(models.Model):
         self.ensure_one()
         lang = self.env.context.get('lang')
         mail_template = self._find_mail_template()
+        if self.state == 'Solved' and self.type.name != 'Question':
+            mail_template = self._find_mail_template_solved()
+        if self.state == 'Solved' and self.type.name == 'Question':
+            mail_template = self._find_mail_template_answered()
         if mail_template and mail_template.lang:
             lang = mail_template._render_lang(self.ids)[self.id]
         ctx = {
@@ -131,7 +135,17 @@ class property_complaint(models.Model):
             'target': 'new',
             'context': ctx,
         }
+    def _find_mail_template_answered(self):
+        """ Get the appropriate mail template for the current complaint based on its state.
+        """
+        self.ensure_one()
+        return self.env.ref('bloopark_realestate.mail_template_property_complaint_answered', raise_if_not_found=False)
 
+    def _find_mail_template_solved(self):
+        """ Get the appropriate mail template for the current complaint based on its state.
+        """
+        self.ensure_one()
+        return self.env.ref('bloopark_realestate.mail_template_property_complaint_solved', raise_if_not_found=False)
 
     def _find_mail_template(self):
         """ Get the appropriate mail template for the current complaint based on its state.

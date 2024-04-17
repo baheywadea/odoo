@@ -374,7 +374,7 @@
             <form string="Property Complaint">
                 <header>
                     <button name="action_complaint_send" id="send_by_email_primary" string="Send by Email" type="object" data-hotkey="g"
-                    invisible="state != 'New'" class="btn-primary"/>
+                    invisible="state == 'Dropped'" class="btn-primary"/>
 
 
                     <button name="confirm_complaint" string="Confirm" type="object"  invisible="state != 'New'" data-hotkey="v"/>
@@ -410,10 +410,10 @@
                         <group name="complaint_details">
                             <field name="customer_description"/>
                             <field name="date"/>
-                            <field name="type"/>
-                            <field name="question_answer" required="type.name=='Question'"/>
-                            <field name="action_plan" required="state!='New'"/>
-                            <field name="assign_to" required="state!='New'"/>
+                            <field name="type" required="1"/>
+                            <field name="question_answer" required="type == 1" invisible="type != 1"/>
+                            <field name="action_plan" required="type != 1 and state!='New'" invisible="type == 1"/>
+                            <field name="assign_to" required="type != 1 and state!='New'" />
 
                         </group>
                     </group>

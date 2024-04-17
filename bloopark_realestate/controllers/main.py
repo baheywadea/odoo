@@ -48,6 +48,9 @@ class WebsitePropertyComplaint(http.Controller):
         """ Here to get complaint type id"""
         complaint_type = request.env['complaint.type'].sudo().search([('name','=',kwargs.get('type'))])
 
+        """ Here to get employee and auto assigned to complaint"""
+        employee = request.env['hr.employee'].sudo().search([])
+
         """ Here to get complaint values like created partner id and house no , flat no and customer description
             and the select type of complaint to customer
         """
@@ -55,7 +58,8 @@ class WebsitePropertyComplaint(http.Controller):
                           'customer_house_no': kwargs.get('customer_house_no'),
                           'customer_Flat_no': kwargs.get('customer_Flat_no'),
                           'customer_description': kwargs.get('description'),
-                          'type':complaint_type[0].id
+                          'type':complaint_type[0].id,
+                          'assign_to':employee.id,
                           }
         complaint_id = request.env['property.complaint'].sudo().create(complaint_vals)
         """ Here send email to customer email with complaint no created and recorded data
