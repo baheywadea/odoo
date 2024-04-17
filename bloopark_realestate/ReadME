@@ -1,0 +1,35 @@
+provide a form on website for
+            tenants to submit complaints about their rented flats. These complaints will then be classified
+            and dealt with by RealEstateX’s employees.
+            Tenants should be able to submit complaints using RealEstateX’s website.
+                a. In the form, tenants will provide data to identify themselves (name, email) and
+                the flat they are renting (address)
+                b. The form should also include fields to describe the problem (type, description)
+                c. There are many types of complaints (question, electrical issue, heating issue,
+                etc)
+                d. The form should be available without authentication.
+                e. After submission, tenants should see a success page indicating that their
+                complaint has been recorded, and they should also receive an email with their
+                complaint number
+
+            2. Back-office Pipeline: In the backend, RealEstateX’s employees should be able to
+            see the complaints submitted by the tenants and take action appropriately.
+                a. Complaints should be assigned automatically to a customer service
+                representative, who will be responsible to classify the complaint and decide
+                and write down (text field) the action plan.
+                b. If the complaint is a question, the customer service representative can just
+                message the tenant with the answer and close the complaint.
+                c. If the complaint is not valid (duplication, wrong information, or other reasons)
+                the customer service representative can drop it.
+                d. If the action plan requires an intervention from a RealEstateX’s employee, a
+                work order needs to be printed by a customer service supervisor.
+                e. Once a complaint is closed (solved or dropped) an email must be sent to the
+                tenant notifying the outcome of their complaint
+                f. The Pipeline have 5 stages
+                    i. New: for newly created complaints
+                    ii. In Review: for complaints that are being classified by a customer
+                    service representative
+                    iii. In Progress: for complaints that are being addressed with an action
+                    plan
+                    iv. Solved: for complaints that have been solved
+                    v. Dropped: for complaints that have been dropped
