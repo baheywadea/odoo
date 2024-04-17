@@ -1,31 +1,13 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#	odoo, Open Source Management Solution
-#	Copyright (C) 2011-Today Serpent Consulting Services PVT LTD
-#	(<http://www.serpentcs.com>)
-#
-#	This program is free software: you can redistribute it and/or modify
-#	it under the terms of the GNU Affero General Public License as
-#	published by the Free Software Foundation, either version 3 of the
-#	License, or (at your option) any later version.
-#
-#	This program is distributed in the hope that it will be useful,
-#	but WITHOUT ANY WARRANTY; without even the implied warranty of
-#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#	GNU Affero General Public License for more details.
-#
-#	You should have received a copy of the GNU Affero General Public License
-#	along with this program.  If not, see <http://www.gnu.org/licenses/>.
-############################################################################
+# Part of BAHEY WADEA 2024. See LICENSE file for full copyright and licensing details.
+
 
 import time
-from datetime import datetime
 from odoo import models, fields, api, _
-from dateutil.relativedelta import relativedelta
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 
 
+# this model handle the tenancy contract rent schedule depend on contract tenancy start date and end date
 class tenancy_rent_schedule(models.Model):
 	_name = "tenancy.rent.schedule"
 	_rec_name = "tenancy_id"
@@ -45,17 +27,22 @@ class tenancy_rent_schedule(models.Model):
 	tenancy_id = fields.Many2one('property.tenancy', 'Tenancy', help='Tenancy Name.')
 
 
+# this model handle the tenancy contract details with tenant and specific property
 class property_tenancy(models.Model):
 	_name = "property.tenancy"
 	_order = 'name'
 
+	# can upload contract file of agreement to this tenancy contract
 	contract_attachment = fields.Binary('Tenancy Contract')
 
 	deposit_received = fields.Boolean(string='Deposit Received?',help="True if deposit amount received for current Tenancy.")
 	deposit_return = fields.Boolean(string='Deposit Returned?',help="True if deposit amount returned for current Tenancy.")
+
+	# the tenancy contract ref / name automaticaly generated depend on sequence
 	name = fields.Char('Reference',
 					   default=lambda self: self.env['ir.sequence'].next_by_code('realestate.property.tenancy'),
 					   required=True, help="Unique Property Tenancy Number")
+
 
 	date = fields.Date('Expiration Date', select=True, help="Tenancy contract end date.")
 	date_start = fields.Date('Start Date', default=lambda *a: time.strftime(DEFAULT_SERVER_DATE_FORMAT),

@@ -1,20 +1,19 @@
 # -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of BAHEY WADEA 2024. See LICENSE file for full copyright and licensing details.
 
-import warnings
-from datetime import datetime, timedelta
 import logging
 from odoo import http, _
-from odoo.addons.http_routing.models.ir_http import slug
-from odoo.osv.expression import AND
 from odoo.http import request
-from odoo.tools.misc import groupby
 
 _logger = logging.getLogger(__name__)
 
 
-class WebsitePropertyComplaint(http.Controller):
+#This Controller Class to render and handle complaint form
 
+class WebsitePropertyComplaint(http.Controller):
+    """ This function render specific form of complaint
+    and passing the complaint types to this form to help user to choose specific complaint type
+        """
     @http.route('/property/complaint/', type='http', auth="public", website=True, sitemap=True)
     def complaint_apply(self, **kwargs):
         complaint_type_ids = request.env['complaint.type'].sudo().search([])
@@ -27,9 +26,16 @@ class WebsitePropertyComplaint(http.Controller):
         }
         return request.render("bloopark_realestate.apply_complaint",values)
 
+    """ This function submit customer complaint data to create 
+        partner record with customer data like (name,street , street2, city)
+       
+            """
     @http.route('/property/complaint/submit', type='http', auth="public", website=True, methods=["POST"])
     def complaint_apply_record(self, **kwargs):
         _logger.warning("/property/complaint/submit"+str(kwargs))
+        """ Here is the customer data to create 
+                partner record with customer data like (name,street , street2, city) and passing value tenant true
+                    """
         partner_vals = {'name':kwargs.get('partner_name'),
                         'email': kwargs.get('email_from'),
                         'street': kwargs.get('customer_street'),
@@ -39,7 +45,12 @@ class WebsitePropertyComplaint(http.Controller):
                         }
 
         partner_id = request.env['res.partner'].sudo().create(partner_vals)
+        """ Here to get complaint type id"""
         complaint_type = request.env['complaint.type'].sudo().search([('name','=',kwargs.get('type'))])
+
+        """ Here to get complaint values like created partner id and house no , flat no and customer description
+            and the select type of complaint to customer
+        """
         complaint_vals = {'partner_id':partner_id.id,
                           'customer_house_no': kwargs.get('customer_house_no'),
                           'customer_Flat_no': kwargs.get('customer_Flat_no'),
@@ -47,5 +58,9 @@ class WebsitePropertyComplaint(http.Controller):
                           'type':complaint_type[0].id
                           }
         complaint_id = request.env['property.complaint'].sudo().create(complaint_vals)
+        """ Here send email to customer email with complaint no created and recorded data
+                """
         complaint_id._send_order_confirmation_mail()
+
+        """Last Step redirect to Thank you page"""
         return request.redirect("/complaint-thank-you?id="+str(complaint_id.id))

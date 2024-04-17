@@ -1,38 +1,18 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#	odoo, Open Source Management Solution
-#	Copyright (C) 2011-Today Serpent Consulting Services PVT LTD
-#	(<http://www.serpentcs.com>)
-#
-#	This program is free software: you can redistribute it and/or modify
-#	it under the terms of the GNU Affero General Public License as
-#	published by the Free Software Foundation, either version 3 of the
-#	License, or (at your option) any later version.
-#
-#	This program is distributed in the hope that it will be useful,
-#	but WITHOUT ANY WARRANTY; without even the implied warranty of
-#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#	GNU Affero General Public License for more details.
-#
-#	You should have received a copy of the GNU Affero General Public License
-#	along with this program.  If not, see <http://www.gnu.org/licenses/>.
-############################################################################
+# Part of BAHEY WADEA 2024. See LICENSE file for full copyright and licensing details.
 
-import time
-from datetime import datetime
 from odoo import models, fields, api, _
-from dateutil.relativedelta import relativedelta
-from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
-from odoo.exceptions import UserError
 
 
+
+# Add fields to partner (Contact) to distinguish this contac is tenant not normal contact
 class res_partner(models.Model):
     _inherit = "res.partner"
 
     tenant = fields.Boolean('Tenant', help="Check this box if this contact is a tenant.")
 
 
+# This model for rent type like monthly or quartly ... etc
 class rent_type(models.Model):
     _name = "rent.type"
     _order = 'name'
@@ -43,18 +23,20 @@ class rent_type(models.Model):
     renttype = fields.Selection([('Month', 'Month(S)'), ('Year', 'Year(S)')])
 
 
+# This model for property type like Residential Flat, Office, Villa ,etc
 class property_type(models.Model):
     _name = "property.type"
 
     name = fields.Char('Name', size=50, required=True)
 
-
+# This model for room type like Master Room , Children Room , Dining room , etc
 class room_type(models.Model):
     _name = "room.type"
 
     name = fields.Char('Name', size=50, required=True)
 
 
+# This model for room asset like T.V , Heating ,etc and handle the qty there and the type of assets
 class room_assets(models.Model):
     _name = "room.assets"
 
@@ -66,6 +48,9 @@ class room_assets(models.Model):
     room_id = fields.Many2one('property.room', 'Property')
 
 
+
+# This model for property room details like (Width , Height , Length) and relate the room type and with assets ,
+# Also can add attachment file to this room (like , plan or photo)
 class property_room(models.Model):
     _name = "property.room"
 
@@ -81,6 +66,7 @@ class property_room(models.Model):
     property_id = fields.Many2one('property', 'Property')
 
 
+# This model for property photos details l
 class property_photo(models.Model):
     _name = "property.photo"
 
@@ -91,18 +77,23 @@ class property_photo(models.Model):
 
 
 
+# This model for property details like Reference No
 class property(models.Model):
     _name = 'property'
     _description = 'Property'
 
     active = fields.Boolean(string="Active", default=True)
 
+    # Name or Reference No created automaticallly by sequence for each property no need to manual enter
     name = fields.Char('Name / Reference',
                        default=lambda self: self.env['ir.sequence'].next_by_code('realestate.property'), required=True,
                        help="Unique Property Number")
+
+    # The Property Main Image
     image = fields.Binary('Image')
     note = fields.Text('Notes', help='Additional Notes.')
 
+    # The PropertyAddress details
     city = fields.Char('City')
     street = fields.Char('Street')
     street2 = fields.Char('Street2')
@@ -110,19 +101,29 @@ class property(models.Model):
     country_id = fields.Many2one('res.country', 'Country')
     state_id = fields.Many2one("res.country.state", 'State')
 
+    # Relate The property with type  details
     type_id = fields.Many2one('property.type', 'Property Type', help='Property Type.')
+    # Relate The property with Rooms Detals
     room_ids = fields.One2many('property.room', 'property_id', 'Rooms')
 
+    # Relate The property with Manager (from Employees Records Can Select)
     property_manager = fields.Many2one('hr.employee', 'Property Manager', help="Manager of Property (Employee).")
+    # Relate The property With Multi Photos
     property_photo_ids = fields.One2many('property.photo', 'photo_id', 'Photos')
 
+    # Add the Number of bedroom of this property
     bedroom = fields.Selection([('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5+')], 'Bedrooms', default='1')
+    # Add the Number of bathroom of this property
     bathroom = fields.Selection([('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5+')], 'Bathrooms', default='1')
 
+    # Add the rent amount of property
     ground_rent = fields.Float('Ground Rent', help='Ground rent of Property.')
+    # Add the Gross floor area in Meter.
     gfa_meter = fields.Float('GFA(m)', help='Gross floor area in Meter.')
 
+    # if property rented we will calculated the current tenant
     current_tenant_id = fields.Many2one('res.partner', 'Current Tenant')
+    # Relate the property with rent type to help in tenancy record in future to be auto and also can modified
     rent_type_id = fields.Many2one('rent.type', 'Rent Type')
 
     # complaint_ids = fields.One2many('property.complaint', 'property_id', 'Maintenance')
@@ -132,9 +133,12 @@ class property(models.Model):
     furnished = fields.Selection([('none', 'None'), ('semi_furnished', 'Semi Furnished'),
                                   ('full_furnished', 'Full Furnished')], 'Furnishing', default='none',
                                  help='Furnishing.')
+
+    # The state of property like free to be rent or when it be rented will be on lease or if sold or booked only
     state = fields.Selection(
         [('new_draft', 'Booking Open'), ('draft', 'Available'), ('book', 'Booked'), ('normal', 'On Lease'),
          ('close', 'Sale'), ('sold', 'Sold'), ('cancel', 'Cancel')], 'State',
         required=True, default='draft')
 
+    # Here constraint to make property name / ref unique and not be dublicated
     _sql_constraints = [('uniq_name', 'unique(name)', "The name of this Property must be unique!")]
