@@ -4,43 +4,75 @@
     'name': 'Real Estate',
     'version': '17.0.0.0',
     'category': 'Accounting',
-    'summary': 'Real Estate',
+    'summary': 'RealEstateX Tenant Complaint Management System',
     'description': """
-            provide a form on website for
-            tenants to submit complaints about their rented flats. These complaints will then be classified
-            and dealt with by RealEstateX’s employees.
-            Tenants should be able to submit complaints using RealEstateX’s website.
-                a. In the form, tenants will provide data to identify themselves (name, email) and
-                the flat they are renting (address)
-                b. The form should also include fields to describe the problem (type, description)
-                c. There are many types of complaints (question, electrical issue, heating issue,
-                etc)
-                d. The form should be available without authentication.
-                e. After submission, tenants should see a success page indicating that their
-                complaint has been recorded, and they should also receive an email with their
-                complaint number
-            
-            2. Back-office Pipeline: In the backend, RealEstateX’s employees should be able to
-            see the complaints submitted by the tenants and take action appropriately.
-                a. Complaints should be assigned automatically to a customer service
-                representative, who will be responsible to classify the complaint and decide
-                and write down (text field) the action plan.
-                b. If the complaint is a question, the customer service representative can just
-                message the tenant with the answer and close the complaint.
-                c. If the complaint is not valid (duplication, wrong information, or other reasons)
-                the customer service representative can drop it.
-                d. If the action plan requires an intervention from a RealEstateX’s employee, a
-                work order needs to be printed by a customer service supervisor.
-                e. Once a complaint is closed (solved or dropped) an email must be sent to the
-                tenant notifying the outcome of their complaint
-                f. The Pipeline have 5 stages
-                    i. New: for newly created complaints
-                    ii. In Review: for complaints that are being classified by a customer
-                    service representative
-                    iii. In Progress: for complaints that are being addressed with an action
-                    plan
-                    iv. Solved: for complaints that have been solved
-                    v. Dropped: for complaints that have been dropped
+            RealEstateX Tenant Complaint Management System
+1. Introduction
+RealEstateX aims to streamline the process of handling tenant complaints through an efficient online system. This project involves the development of a web-based platform where tenants can submit complaints related to their rented flats, and RealEstateX employees can manage and address these complaints effectively.
+
+2. Project Scope
+The scope of this project includes:
+
+Designing and implementing a user-friendly complaint submission form for tenants.
+Developing a robust back-end pipeline for RealEstateX employees to handle and classify complaints.
+Automating complaint assignment and notification processes.
+Implementing a comprehensive system to track complaint status through different stages.
+3. Key Features
+For Tenants:
+Complaint Submission Form:
+
+Allows tenants to provide identification details (name, email) and flat information (address).
+Includes fields to describe the complaint type and provide a detailed description.
+Accessible without Authentication:
+
+Tenants can submit complaints without the need for user authentication.
+Feedback and Confirmation:
+
+Upon submission, tenants receive a success confirmation on the website.
+Tenants automatically receive an email with a unique complaint number for reference.
+For RealEstateX Employees:
+Complaint Management Pipeline:
+
+Automated assignment of complaints to customer service representatives.
+Classification of complaints based on type and severity.
+Workflow Stages:
+
+New: Newly submitted complaints awaiting classification.
+In Review: Complaints being reviewed and categorized.
+In Progress: Complaints with action plans being addressed.
+Solved: Complaints that have been resolved.
+Dropped: Invalid or duplicate complaints that are closed.
+Action Plans:
+
+Customer service representatives develop action plans for valid complaints.
+Supervisors intervene for escalated complaints requiring further attention.
+Communication and Notifications:
+
+Automatic email notifications to tenants for complaint status updates (e.g., resolution, closure).
+4. System Architecture
+The system architecture consists of:
+
+Front-end:
+
+Developed using HTML/CSS/JavaScript.
+User interface for complaint submission and confirmation.
+Back-end:
+
+Built with Node.js and Express.js.
+MongoDB database for storing complaint data.
+RESTful APIs for handling complaint submissions and management.
+5. Deployment and Integration
+The system will be deployed on a web server environment, ensuring scalability and reliability. Integration with email services (e.g., SMTP) will enable automated email notifications to tenants.
+
+6. Future Enhancements
+Potential future enhancements may include:
+
+Integration with a dashboard for real-time monitoring of complaint status.
+Machine learning models for automated complaint classification.
+Mobile application for on-the-go complaint submissions.
+
+7. Conclusion
+The RealEstateX Tenant Complaint Management System aims to enhance tenant satisfaction and streamline internal processes for complaint resolution. By leveraging modern web technologies and automation, this system will ensure efficient handling of tenant complaints and prompt resolution of issues.
 
     """,
     'author': 'Bahey Wadea',
