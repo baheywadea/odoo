@@ -68,6 +68,7 @@
     'license': 'OPL-1',
     'auto_install': False,
     'installable': True,
+    'application': True,
     # 'live_test_url':'https://youtu.be/JMFQ7DUNOkg',
     'images':[
         "static/description/icon.png"
