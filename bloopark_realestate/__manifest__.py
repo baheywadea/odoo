@@ -3,7 +3,7 @@
 {
     'name': 'Real Estate',
     'version': '17.0.0.0',
-    'category': 'Accounting',
+    'category': 'Realestate',
     'summary': 'RealEstateX Tenant Complaint Management System',
     'description': """
             RealEstateX Tenant Complaint Management System
@@ -79,7 +79,7 @@ The RealEstateX Tenant Complaint Management System aims to enhance tenant satisf
     "price": 120,
     "currency": 'EUR',
     'website': 'https://www.linkedin.com/in/baheywadeahakim/',
-    'depends': ['base','hr', 'website','account'],
+    'depends': ['base','hr', 'website','contacts'],
     'data': [
         'report/property_complaint_report.xml',
         'report/property_complaint_report_action.xml',
