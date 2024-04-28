@@ -49,7 +49,7 @@ class WebsitePropertyComplaint(http.Controller):
         complaint_type = request.env['complaint.type'].sudo().search([('name','=',kwargs.get('type'))])
 
         """ Here to get employee and auto assigned to complaint"""
-        employee = request.env['hr.employee'].sudo().search([])
+        employee = request.env['hr.employee'].sudo().search([])[0]
 
         """ Here to get complaint values like created partner id and house no , flat no and customer description
             and the select type of complaint to customer

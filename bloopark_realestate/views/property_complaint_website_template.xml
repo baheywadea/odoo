@@ -20,7 +20,7 @@
 
                 <div id="jobs_section" class="container">
                     <div class="row">
-                        <section id="forms" class="col-12 col-md-9 s_website_form" data-vcss="001" data-snippet="s_website_form">
+<!--                        <section id="forms" class="col-12 col-md-9 s_website_form" data-vcss="001" data-snippet="s_website_form">-->
                             <div class="container">
                                 <form id="property_complaint_form" action="/property/complaint/submit" method="post" enctype="multipart/form-data" class="row o_mark_required" data-mark="*" data-success-mode="redirect" data-success-page="/complaint-thank-you" hide-change-model="true">
                                     <div class="s_website_form_rows row s_col_no_bgcolor">
@@ -55,7 +55,7 @@
 
                                                 <span class="s_website_form_mark"> *</span></label>
                                                 <div class="col-sm">
-                                                    <input id="customer_street" type="text" class="form-control s_website_form_input" name="customer_street" required="" data-fill-with="customer_street"/>
+                                                    <input id="customer_street_id" type="text" class="form-control s_website_form_input" name="customer_street" required="" data-fill-with="customer_street"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -67,7 +67,7 @@
 
                                                 </label>
                                                 <div class="col-sm">
-                                                    <input id="customer_street2" type="text" class="form-control s_website_form_input" name="customer_street2" data-fill-with="customer_street2"/>
+                                                    <input id="customer_street2_id" type="text" class="form-control s_website_form_input" name="customer_street2" data-fill-with="customer_street2"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -79,7 +79,7 @@
 
                                                 <span class="s_website_form_mark"> *</span></label>
                                                 <div class="col-sm">
-                                                    <input id="customer_city" type="text" class="form-control s_website_form_input" name="customer_city" required="" data-fill-with="customer_city"/>
+                                                    <input id="customer_city_id" type="text" class="form-control s_website_form_input" name="customer_city" required="" data-fill-with="customer_city"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -91,7 +91,7 @@
 
                                                 <span class="s_website_form_mark"> *</span></label>
                                                 <div class="col-sm">
-                                                    <input id="customer_house_no" type="text" class="form-control s_website_form_input" name="customer_house_no" required="" data-fill-with="customer_house_no"/>
+                                                    <input id="customer_house_no_id" type="text" class="form-control s_website_form_input" name="customer_house_no" required="" data-fill-with="customer_house_no"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -103,7 +103,7 @@
 
                                                 <span class="s_website_form_mark"> *</span></label>
                                                 <div class="col-sm">
-                                                    <input id="customer_Flat_no" type="text" class="form-control s_website_form_input" name="customer_Flat_no" required="" data-fill-with="customer_Flat_no"/>
+                                                    <input id="customer_Flat_no_id" type="text" class="form-control s_website_form_input" name="customer_Flat_no" required="" data-fill-with="customer_Flat_no"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -130,7 +130,7 @@
                                                     <span class="s_website_form_mark"> *</span>
                                                 </label>
                                                 <div class="col-sm">
-                                                    <select class="form-select s_website_form_input" style="" required="" name="type" id="type">
+                                                    <select class="form-select s_website_form_input" style="" required="" name="type" id="type_id">
                                                         <option value="">Select Complaint Type</option>
                                                         <t t-foreach="complaint_type_ids" t-as="type">
                                                             <!--<span t-esc="type.name"/>-->
@@ -146,7 +146,7 @@
                                             <div class="row s_col_no_resize s_col_no_bgcolor">
 
                                                 <div class="col-sm">
-                                                    <input id="csrf_token" type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                                    <input id="csrf_token_id" type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -158,7 +158,7 @@
                                     </div>
                                 </form>
                             </div>
-                        </section>
+<!--                        </section>-->
 
                     </div>
                 </div>
