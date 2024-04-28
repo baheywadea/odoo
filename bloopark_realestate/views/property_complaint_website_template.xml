@@ -2,7 +2,7 @@
 <odoo>
 
 
-    <!-- Apply -->
+    <!-- Apply Complaint -->
     <template id="apply_complaint">
         <t t-call="website.layout">
             <t t-set="additional_title">Apply Complaint</t>
